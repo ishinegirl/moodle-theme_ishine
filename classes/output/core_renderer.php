@@ -525,6 +525,9 @@ class core_renderer extends \core_renderer {
     public function render_login_signup_form($form) {
         global $SITE;
 
+        //added by justin so we could move around the fields
+        $form = new login_signup_form(null, null, 'post', '', array('autocomplete'=>'on'));
+
         $context = $form->export_for_template($this);
         $url = $this->get_logo_url();
         if ($url) {
