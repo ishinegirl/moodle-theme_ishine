@@ -525,8 +525,17 @@ class core_renderer extends \core_renderer {
     public function render_login_signup_form($form) {
         global $SITE;
 
-        //added by justin so we could move around the fields
-        $form = new login_signup_form(null, null, 'post', '', array('autocomplete'=>'on'));
+        // JUSTIN
+        //tried 2 methods to deal with the "other fields" containing custom fields postcode and tel no.
+        //ultimately we need to create a new auth plugin or give up on customfields/formatting for this
+
+        //method 1
+        //looked ok but would not submit presumably cos its not the same $form as used earlier in the process
+        //$form = new login_signup_form(null, null, 'post', '', array('autocomplete'=>'on'));
+
+        //method 2
+        //tried this but we can not get access to the underlying _form so this didn't work
+        //$form->removeElement('category_1');
 
         $context = $form->export_for_template($this);
         $url = $this->get_logo_url();
