@@ -713,6 +713,50 @@ class core_renderer extends \core_renderer {
         return $this->render_from_template('core/signup_form_layout', $context);
     }
     
+     public function footer() {
+		global $CFG, $DB, $PAGE;
+
+		require_once($CFG->dirroot.'/blocks/navbuttons/footer.php');  // Add this line to enable the navigation buttons
+		$output = draw_navbuttons().$this->container_end_all(true);   // Change this line to enable the navigation buttons
+
+		//$output = $this->container_end_all(true);
+
+		$footer = $this->opencontainers->pop('header/footer');
+
+		if (debugging() and $DB and $DB->is_transaction_started()) {
+			// TODO: MDL-20625 print warning - transaction will be rolled back
+		}
+
+		// Provide some performance info if required
+		$performanceinfo = '';
+		if (defined('MDL_PERF') || (!empty($CFG->perfdebug) and $CFG->perfdebug > 7)) {
+			$perf = get_performance_info();
+			if (defined('MDL_PERFTOFOOT') || debugging() || $CFG->perfdebug > 7) {
+				$performanceinfo = $perf['html'];
+			}
+		}
+
+		// We always want performance data when running a performance test, even if the user is redirected to another page.
+		if (MDL_PERF_TEST && strpos($footer, $this->unique_performance_info_token) === false) {
+			$footer = $this->unique_performance_info_token . $footer;
+		}
+		$footer = str_replace($this->unique_performance_info_token, $performanceinfo, $footer);
+
+		// Only show notifications when we have a $PAGE context id.
+		if (!empty($PAGE->context->id)) {
+			$this->page->requires->js_call_amd('core/notification', 'init', array(
+				$PAGE->context->id,
+				\core\notification::fetch_as_array($this)
+			));
+		}
+		$footer = str_replace($this->unique_end_html_token, $this->page->requires->get_end_code(), $footer);
+
+		$this->page->set_state(\moodle_page::STATE_DONE);
+
+		return $output . $footer;
+	}
+
+    
     
 
 }
