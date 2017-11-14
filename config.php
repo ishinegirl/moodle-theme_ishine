@@ -25,7 +25,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
-require_once($CFG->dirroot . '/theme/boost/lib.php');
 require_once($CFG->dirroot . '/theme/ishine/lib.php');
 
 $THEME->name = 'ishine';
@@ -34,18 +33,12 @@ $THEME->editor_sheets = [''];
 
 $THEME->parents = ['boost'];
 
-// Call main theme scss from parent- including the selected preset.
-$THEME->scss = function($theme) {
+$THEME->scss= function($theme){
     return theme_ishine_get_main_scss_content($theme);
 };
 
 // Docking is not currently supported in Boost family themes.
 $THEME->enable_dock = false;
-
-// Call css/scss processing functions from Boost.
-$THEME->csstreepostprocessor = 'theme_boost_css_tree_post_processor';
-$THEME->prescsscallback = 'theme_boost_get_pre_scss';
-$THEME->extrascsscallback = 'theme_boost_get_extra_scss';
 
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 
@@ -53,3 +46,5 @@ $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->supportscssoptimisation = false;
 $THEME->yuicssmodules = array();
 $THEME->undeletableblocktypes = '';
+
+$THEME->addblockposition= BLOCK_ADDBLOCK_POSITION_FLATNAV;
