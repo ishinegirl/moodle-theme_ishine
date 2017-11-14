@@ -16,7 +16,7 @@
 
 
 
-namespace theme_boost\output;
+namespace theme_ishine\output;
 defined('MOODLE_INTERNAL') || die();
 
 /* HACKS BY JUSTIN for HVP */
@@ -45,7 +45,7 @@ class mod_hvp_renderer extends \mod_hvp_renderer {
             $libraries['H5P.InteractiveVideo']['majorVersion'] == '1'
         ) {
             $styles[] = (object) array(
-               'path'    => $CFG->httpswwwroot . '/theme/boost/customhvp.css',
+               'path'    => $CFG->httpswwwroot . '/theme/ishine/customhvp.css',
                 'version' => '?ver=0.0.2',
             );
         }
