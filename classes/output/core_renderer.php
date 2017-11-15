@@ -94,6 +94,20 @@ class core_renderer extends \theme_boost\output\core_renderer {
 		return $output . $footer;
 	}
 
+    public function render_ishineemail_login_signup_form($form) {
+                global $SITE;
+
+         $context = $form->export_for_template($this);
+         $url = $this->get_logo_url();
+         if ($url) {
+                        $url = $url->out(false);
+                   }
+         $context['logourl'] = $url;
+         $context['sitename'] = format_string($SITE->fullname, true, ['context' => context_course::instance(SITEID), "escape" => false]);
+
+         return $this->render_from_template('core/signup_form_layout', $context);
+     }
+
     
     
 
