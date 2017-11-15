@@ -16,7 +16,7 @@
 
 
 
-namespace theme_boost\output;
+namespace theme_ishine\output;
 defined('MOODLE_INTERNAL') || die();
 
 /* HACKS BY JUSTIN for IShine */
