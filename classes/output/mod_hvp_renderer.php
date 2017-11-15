@@ -46,7 +46,7 @@ class mod_hvp_renderer extends \mod_hvp_renderer {
         ) {
             $styles[] = (object) array(
                'path'    => $CFG->httpswwwroot . '/theme/ishine/customhvp.css',
-                'version' => '?ver=0.0.21',
+                'version' => '?ver=0.0.22',
             );
         }
     }
