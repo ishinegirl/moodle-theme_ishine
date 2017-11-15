@@ -141,7 +141,7 @@ class format_topcoll_renderer extends \format_topcoll_renderer {
             }
             //edit buy JUSTIN we needed this for our theme I guess
             //if ((($this->mobiletheme === false) && ($this->tablettheme === false)) || ($this->userisediting)) {
-            if(true)
+            if(true){
                 $o .= $this->output->heading($title, 3, 'sectionname');
             } else {
                 $o .= \html_writer::tag('h3', $title); // Moodle H3's look bad on mobile / tablet with CT so use plain.
